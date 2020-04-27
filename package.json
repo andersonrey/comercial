@@ -2,7 +2,7 @@
   "name": "comercial",
   "version": "0.0.1",
   "description": "App para comerciales de CTO",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/andersonrey/comercial/issues"
   },
-  "homepage": "https://github.com/andersonrey/comercial#readme"
+  "homepage": "https://github.com/andersonrey/comercial#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.10"
+  }
 }
