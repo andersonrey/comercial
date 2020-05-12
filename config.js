@@ -1,5 +1,7 @@
+require('dotenv').config();
+
 const config = {
-    port: process.env.port,
+    port: process.env.PORT,
     dbUser: process.env.DB_USER,
     dbName: process.env.DB_NAME,
     dbPass: process.env.DB_PASS,
