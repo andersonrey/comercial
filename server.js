@@ -1,16 +1,20 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const config = require('./config');
+const db = require('./db');
+const router = require('./network/routes')
 
-const router = require('./network/routes');
+const DB_URL = `mongodb+srv://${config.dbUser}:${config.dbPass}${config.dbHost}`;
 
-const PUERTO = 3000;
+db(DB_URL);
 
 var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 router(app);
-app.use('/app', express.static('public'));
-app.listen(PUERTO);
+app.use('/static', express.static(path.join(__dirname, 'public')));
 
-console.log('The app run in port 3000');
+const server = app.listen(config.port, ()=>{
+    debug(`Listening http://localhost:${server.address().port}`);
+})
