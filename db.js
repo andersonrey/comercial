@@ -10,7 +10,7 @@ async function conect(url ){
         dbName: config.dbName
     });
 
-    console.log('DB conectada con exito');
+    console.log('DB successfully connected');
 }
 
 module.exports = conect;

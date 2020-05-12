@@ -6,12 +6,12 @@ const router = express.Router();
 
 router.post('/', (req, res) => {
     
-    controller.addUser(req.body.name)
+    controller.addUser(req.body)
         .then((data)=>{
             response.success(req, res, data , 201);
         })
         .catch( e => {
-        response.error(req, res, 'Información Ivalidad', 400, 'Error en el controlador');
+        response.error(req, res, 'Invalidity Information', 400, 'Error in controller User');
         }); 
 });
 

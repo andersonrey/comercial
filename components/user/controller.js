@@ -1,12 +1,15 @@
 const store = require('./store');
+const bcrypt = require('bcrypt');
 
-function addUser (name) {
-    if (!name){
-        return Promise.reject('Ivalid name');
-    }     
-    const user = {
-        name,
-        }; 
+function addUser (body) {
+
+    let { name, email, password, role } = body;
+    let user = {
+      name,
+      email,
+      password: bcrypt.hashSync(password, 10),
+      role
+    };
     return store.add(user);
 }
 
