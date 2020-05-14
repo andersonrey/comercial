@@ -3,11 +3,11 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const react = require('react');
 const config = require('./config');
-const db = require('./db');
+const mongo = require('./lib/mongo');
 const router = require('./network/routes')
 
 const DB_URL = `mongodb+srv://${config.dbUser}:${config.dbPass}${config.dbHost}`;
-db(DB_URL);
+mongo(DB_URL);
 
 var app = express();
 app.use(bodyParser.json());

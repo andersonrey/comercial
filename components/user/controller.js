@@ -1,6 +1,7 @@
 const store = require('./store');
 const bcrypt = require('bcrypt');
 
+
 function addUser (body) {
 
     let { name, email, password, role } = body;

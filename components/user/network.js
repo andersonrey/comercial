@@ -4,7 +4,10 @@ const controller = require('./controller');
 
 const router = express.Router();
 
-router.post('/', (req, res) => {
+router.post('/',addUser);
+router.get('/',getUsers);
+
+function addUser (req, res) {
     
     controller.addUser(req.body)
         .then((data)=>{
@@ -13,18 +16,16 @@ router.post('/', (req, res) => {
         .catch( e => {
         response.error(req, res, 'Invalidity Information', 400, 'Error in controller User');
         }); 
-});
+}
 
-router.get('/', (req, res) => {
+function getUsers (req, res) {
     controller.getUsers()
-        .then((userList) => {
-            response.success(req, res, userList, 200)
+        .then((data) => {
+            response.success(req, res, data, 200)
         })
         .catch(e => {
             response.error(req, res, 'Unexpected Error', 500, e)
         });
-});
-
-
+}
 
 module.exports = router;
