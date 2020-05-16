@@ -12,11 +12,14 @@ const mySchema = new Schema({
         type: String,
         required: [true, "Type is necesary"],
     },
+    modality: {
+        type: String,
+    },
     exam: {
         type: String,
         required: [true, "Exam is necesary"],
     },
 })
 
-const model = mongoose.model('Course', mySchema);
+const model = mongoose.model('Product', mySchema);
 module.exports =  model;

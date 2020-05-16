@@ -1,17 +1,17 @@
 const store = require('./store');
 
 
-function addCourse (body) {
+function addProduct (body) {
     return store.add(body);
 }
 
-function getCourses(){
+function getProducts(){
     return new Promise( (resolve, reject) => {
         resolve(store.list())
     });
 }
 
-function getCourse (id) {
+function getProduct (id) {
     return new Promise( (resolve, reject) => {
         if(!id){
             reject('Invalid ID');
@@ -21,7 +21,7 @@ function getCourse (id) {
 }
 
 module.exports = {
-    addCourse,
-    getCourses,
-    getCourse
+    addProduct,
+    getProducts,
+    getProduct
 }
