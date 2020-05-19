@@ -6,7 +6,8 @@ const config = require('./config');
 const mongo = require('./lib/mongo');
 const router = require('./network/routes')
 
-const DB_URL = `mongodb+srv://${config.dbUser}:${config.dbPass}${config.dbHost}`;
+// const DB_URL = `mongodb+srv://${config.dbUser}:${config.dbPass}${config.dbHost}`;
+const DB_URL = `mongodb://127.0.0.1:27017/`;
 mongo(DB_URL);
 
 var app = express();

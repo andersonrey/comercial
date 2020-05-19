@@ -9,6 +9,7 @@ function getPayments(){
     return new Promise ((resolve, reject) => {
         Model.find()
             .populate('product')
+            .populate('sale')
             .exec((err, populated) => {
                 if (err){
                     reject(err);
@@ -23,6 +24,7 @@ function getPayment(id){
     return new Promise ((resolve, reject) => {
         Model.findOne({_id: id})
             .populate('product')
+            .populate('sale')
             .exec((err, populated) => {
                 if (err){
                     reject(err);

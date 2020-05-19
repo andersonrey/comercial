@@ -22,6 +22,9 @@ const mySchema = new Schema({
     balance: {
         type: Number,
     },
+    total: {
+        type: Number,
+    },
     date: Date,
 });
 

@@ -47,8 +47,13 @@ function getSale(id){
     })
 }
 
+function updateSale(id, data){
+    return Model.updateOne({_id: id}, data);
+}
+
 module.exports = {
     add: addSale,
     list: getSales,
-    get: getSale
+    get: getSale,
+    update: updateSale
 }

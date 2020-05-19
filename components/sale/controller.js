@@ -3,35 +3,30 @@ const storePayment = require('../payment/store');
 
 function addSale(body){
 
-    let {user, customer, payment, value} = body;
-    let payments = Object.values(payment)
+    let {user, customer,value} = body;
+    // let payments = Object.values(payment)
 
     return new Promise (async (resolve, reject) => {
-        if(!user || !customer || !payment){
+        if(!user || !customer || !value){
             reject('Invalid data')
         }
 
         let balance = 0;
-        var totalPay = 0;
+        let totalPay = 0;
 
-        for (let i = 0; i < payments.length; i++){
-
-            let getPayment = await storePayment.get(payments[i]);
-            let valuePayment = getPayment.value; 
-            totalPay = totalPay + valuePayment;
-       } 
        balance = value - totalPay;
+
+
         let newSale = {
             user,
             customer,
-            payment,
             value,
             balance,
+            total : totalPay,
             date: new Date()
         }
     
-        store.add(newSale);
-        resolve(newSale);
+        resolve(store.add(newSale));
     });
     
 }
@@ -51,9 +46,50 @@ function getSale(id){
     });
 }
 
+function updateSale(id, body){
+    return new Promise( async (resolve, reject) => {
+        let {payment} = body;
+
+        console.log("payment: " + payment );
+
+            if(!payment || !id){
+                reject('Invalid data')
+            }
+    
+            let balance = 0;
+            let totalPay = 0;
+            let thisObject = await getSale(id);
+            console.log(thisObject);
+
+            let value = thisObject.value;
+            let payments = thisObject.payment;
+            payments.push(payment);
+            
+            for (let i = 0; i < payments.length; i++){
+                let getPayment = await storePayment.get(payments[i]);
+                let valuePayment = getPayment.value; 
+                totalPay = totalPay + valuePayment;
+            } 
+          
+           balance = value - totalPay;
+    
+           let newSale = {
+            user: thisObject.user,
+            customer: thisObject.customer,
+            payment: payments,
+            value,
+            balance,
+            total : totalPay,
+            date: new Date()
+        }
+            resolve( store.update(id, newSale));
+        });
+}
+
 module.exports = {
     addSale,
     getSales,
-    getSale
+    getSale,
+    updateSale
 
 }

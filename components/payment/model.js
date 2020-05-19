@@ -8,6 +8,10 @@ const mySchema = new Schema({
         type: Schema.ObjectId,
         ref: 'Product'
     },
+    sale: {
+        type: Schema.ObjectId,
+        ref: 'Sale'
+    },
     type: {
         type: String,
         required: [true, "Type is necesary"],
@@ -23,13 +27,17 @@ const mySchema = new Schema({
     },
     value: {
         type: Number,
-        equired: [true, "Value is necesary"],
+        required: [true, "Value is necesary"],
     },
     tax: {
         type: Number,
     },
     subtotal: {
         type: Number,
+    },
+    voucher: {
+        type: String,
+        required: [true, "No. voucher is necesary"],
     },
     date: Date
 })
